@@ -16,16 +16,16 @@ def select_model(args, device):
     # Model ID is assigned according to the order of the submissions.
     # Different networks are trained with input range of either [0,1] or [0,255]. The range is determined manually.
     model_id = args.model_id
-    if model_id == 0:
+    if model_id == 19:
         # Baseline: Winner of the NTIRE 2022 Efficient SR Challenge 
         # RLFN: Residual Local Feature Network for Efficient Super-Resolution
         # arXiv: https://arxiv.org/pdf/2205.07514.pdf
         # Original Code: https://github.com/bytedance/RLFN
         # Ckpts: rlfn_ntire_x4.pth
-        from models.team00_RLFN import RLFN_Prune
+        from models.team19_DIRN import DIRN
         name, data_range = f"{model_id:02}_RLFN_baseline", 255.0
-        model_path = os.path.join('model_zoo', 'team00_rlfn.pth')
-        model = RLFN_Prune()
+        model_path = os.path.join('model_zoo', 'team19_DIRN.pth')
+        model = DIRN()
         model.load_state_dict(torch.load(model_path), strict=True)
 
     # elif model_id == 1:
